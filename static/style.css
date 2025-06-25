@@ -1,0 +1,109 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+form {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+h2, h3 {
+    text-align: center;
+    color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.flash-messages {
+    margin-bottom: 20px;
+}
+
+.alert {
+    padding: 10px;
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 5px solid #4CAF50;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.link-text {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.top-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+button.small {
+    width: auto;
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+.flash {
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    opacity: 1;
+    animation: fadeOut 0.5s ease-out 3s forwards;
+}
+.flash.success { background-color: #d4edda; color: #155724; }
+.flash.info    { background-color: #d1ecf1; color: #0c5460; }
+.flash.error   { background-color: #f8d7da; color: #721c24; }
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        height: 0;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+}

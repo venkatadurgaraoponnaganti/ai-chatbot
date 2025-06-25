@@ -1,0 +1,6 @@
+flask
+flask_sqlalchemy
+werkzeug
+flask_wtf
+openai
+python-dotenv

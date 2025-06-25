@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <form method="POST">
+        <h2>Login</h2>
+        {{ form.hidden_tag() }}
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <p class="flash {{ category }}">{{ message }}</p>
+                    {% endfor %}
+
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="form-group">
+            {{ form.email.label }}<br>
+            {{ form.email }}
+        </div>
+        <div class="form-group">
+            {{ form.password.label }}<br>
+            {{ form.password }}
+        </div>
+        <button type="submit">Login</button>
+
+        <div class="link-text">
+            <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+        </div>
+    </form>
+</body>
+</html>

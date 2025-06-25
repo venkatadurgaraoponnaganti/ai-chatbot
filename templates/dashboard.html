@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f2f2f2;
+            padding: 40px;
+            max-width: 700px;
+            margin: auto;
+        }
+        .header { 
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .header form button {
+            padding: 10px 16px;
+            font-size: 14px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .header form button:hover {
+            background-color: #357bd8;
+        }
+        .chat-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+        .chat-box pre {
+            background-color: #f4f4f4;
+            padding: 12px;
+            border-radius: 6px;
+            overflow-x: auto; /* horizontal scroll if needed */
+            white-space: pre-wrap; /* line breaks and wrap */
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .chat-input {
+            display: flex;
+            margin-top: 10px;
+        }
+        .chat-input textarea {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            resize: none;
+            border-radius: 6px 0 0 6px;
+            border: 1px solid #ccc;
+        }
+        .chat-input button {
+            padding: 10px;
+            font-size: 18px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+        }
+        .chat-input button:hover {
+            background-color: #3e8e41;
+        }
+        .response-block {
+            margin-top: 30px;
+        }
+
+        .flash{
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    opacity: 1;
+    animation: fadeOut 0.5s ease-out 3s forwards;
+    }
+    .flash.success { background-color: #d4edda; color: #155724; }
+    .flash.info    { background-color: #d1ecf1; color: #0c5460; }
+    .flash.error   { background-color: #f8d7da; color: #721c24; }
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        height: 0;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+}
+    </style>
+    
+</head>
+<body>
+    {{ form.hidden_tag() }}
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <p class="flash {{ category }}">{{ message }}</p>
+                    {% endfor %}
+
+                </div>
+            {% endif %}
+        {% endwith %}
+    
+    <div class="header">
+        <form action="{{ url_for('history') }}" method="get">
+            <button type="submit">History</button>
+        </form>
+        <form action="{{ url_for('logout') }}" method="get">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+
+    <div class="chat-box">
+        {%for user_chat in chat[-2:]%}
+
+           <h4>Your Query:</h6>
+            <p>{{user_chat.request}}</p> 
+            <h4>Your Response:</h6>
+                <pre><code>{{ user_chat.response }}</code></pre>
+
+            
+            
+        {%endfor%}
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            
+            <div class="chat-input">
+                {{ form.request(rows=1, placeholder="Type your question...") }}
+                <button type="submit">send</button>
+            </div>
+            
+
+        </form>
+        
+
+
+
+        
+    </div>
+
+</body>
+</html>
