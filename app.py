@@ -19,7 +19,7 @@ db.init_app(app)
 
 # OpenAI client
 load_dotenv()
-api_key=os.environ['OPENAI_KEY_KEY']
+api_key=os.environ['OPENAI_API_KEY']
 client = OpenAI(api_key=api_key)
 
 # Forms
@@ -146,12 +146,9 @@ def logout():
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(host="0.0.0.0",port=5000, debug=True)
 
 
 
 
 
-print(4)
-
-print(8)
